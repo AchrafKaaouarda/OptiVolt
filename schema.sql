@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT EXISTS 'optivolt' DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE 'optivolt';
+CREATE DATABASE IF NOT EXISTS `optivolt` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `optivolt`;
