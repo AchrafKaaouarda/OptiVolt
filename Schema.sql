@@ -118,3 +118,92 @@ CREATE TABLE reviews (
     FOREIGN KEY (booking_id) REFERENCES bookings (id),
     FOREIGN KEY (client_id) REFERENCES users (id)
 );
+
+-- Données initiales
+-- =============================================
+
+-- Plans d'abonnement
+INSERT INTO
+    subscription_plans (
+        nom,
+        prix_mensuel,
+        duree_jours,
+        max_services,
+        has_scheduling,
+        has_priority_support,
+        has_analytics,
+        description
+    )
+VALUES (
+        'Basic',
+        299,
+        30,
+        5,
+        FALSE,
+        FALSE,
+        FALSE,
+        'Visibilité de base. 5 services max.'
+    ),
+    (
+        'Pro',
+        599,
+        30,
+        15,
+        TRUE,
+        TRUE,
+        FALSE,
+        'Planning avancé + Support prioritaire. 15 services.'
+    ),
+    (
+        'Premium',
+        999,
+        30,
+        50,
+        TRUE,
+        TRUE,
+        TRUE,
+        'Tout inclus + Analytics + Services illimités.'
+    );
+
+-- Types de services
+INSERT INTO
+    service_types (
+        nom_service,
+        description,
+        category
+    )
+VALUES (
+        'Nettoyage Standard',
+        'Lavage simple des panneaux',
+        'Nettoyage'
+    ),
+    (
+        'Nettoyage Haute Pression',
+        'Nettoyage professionnel haute pression',
+        'Nettoyage'
+    ),
+    (
+        'Maintenance Préventive',
+        'Vérification câblage et onduleur',
+        'Maintenance'
+    ),
+    (
+        'Remplacement Onduleur',
+        'Changement matériel défectueux',
+        'Maintenance'
+    ),
+    (
+        'Diagnostic Performance',
+        'Audit complet de rendement + rapport détaillé',
+        'Diagnostic'
+    ),
+    (
+        'Installation Résidentielle',
+        'Pose complète sur toiture résidentielle',
+        'Installation'
+    ),
+    (
+        'Installation Industrielle',
+        'Pose sur hangar ou sol industriel',
+        'Installation'
+    );
