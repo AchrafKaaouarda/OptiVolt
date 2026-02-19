@@ -17,3 +17,15 @@ CREATE TABLE users (
     is_banned BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE subscription_plan (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    prix_mensuel FLOAT NOT NULL,
+    duree_jours INT DEFAULT 30,
+    max_services INT DEFAULT 5,
+    has_scheduling BOOLEAN DEFAULT FALSE,
+    has_priority_support BOOLEAN DEFAULT FALSE,
+    has_analytics BOOLEAN DEFAULT FALSE,
+    description TEXT
+);
