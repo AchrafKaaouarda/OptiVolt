@@ -29,3 +29,35 @@ CREATE TABLE subscription_plan (
     has_analytics BOOLEAN DEFAULT FALSE,
     description TEXT
 );
+
+CREATE TABLE companies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    nom_entreprise VARCHAR(100) NOT NULL,
+    description TEXT,
+    ville VARCHAR(50),
+    contact_phone VARCHAR(20),
+    contact_email VARCHAR(100),
+    horaire_debut VARCHAR(5) DEFAULT '08:00',
+    horaire_fin VARCHAR(5) DEFAULT '18:00',
+    jours_travail VARCHAR(50) DEFAULT 'Lun-Sam',
+    is_verified BOOLEAN DEFAULT FALSE,
+    subscription_plan_id INT,
+    subscription_start DATE,
+    subscription_expires_at DATE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plans (id)
+);
+
+CREATE TABLE service_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom_service VARCHAR(100) NOT NULL,
+    description TEXT,
+    category ENUM(
+        'Maintenance',
+        'Installation',
+        'Nettoyage',
+        'Diagnostic',
+        'Autre'
+    ) DEFAULT 'Autre'
+);
