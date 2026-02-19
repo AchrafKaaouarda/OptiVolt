@@ -61,3 +61,17 @@ CREATE TABLE service_types (
         'Autre'
     ) DEFAULT 'Autre'
 );
+
+CREATE TABLE catalog (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    company_id INT NOT NULL,
+    service_type_id INT NOT NULL,
+    prix_base FLOAT NOT NULL,
+    prix_par_unite FLOAT DEFAULT 0,
+    unite_nom VARCHAR(50) DEFAULT 'panneau',
+    description_offre TEXT,
+    produits_inclus TEXT,
+    duree_estimee VARCHAR(50),
+    FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
+    FOREIGN KEY (service_type_id) REFERENCES service_types (id)
+);
