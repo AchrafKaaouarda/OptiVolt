@@ -75,3 +75,46 @@ CREATE TABLE catalog (
     FOREIGN KEY (company_id) REFERENCES companies (id) ON DELETE CASCADE,
     FOREIGN KEY (service_type_id) REFERENCES service_types (id)
 );
+
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NOT NULL,
+    company_id INT NOT NULL,
+    service_type_id INT NOT NULL,
+    catalog_id INT,
+    date_demande TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rdv_date DATE,
+    rdv_heure VARCHAR(10),
+    mode_paiement ENUM('ONLINE', 'CASH') DEFAULT 'ONLINE',
+    date_debut_prevue DATETIME NULL,
+    technician_superior_contact VARCHAR(100),
+    statut ENUM(
+        'EN_ATTENTE',
+        'PAYEE',
+        'CONFIRMEE',
+        'REFUSEE',
+        'TERMINEE',
+        'ANNULEE',
+        'ANNULEE_CLIENT'
+    ) DEFAULT 'EN_ATTENTE',
+    quantite INT DEFAULT 1,
+    prix_total FLOAT NOT NULL,
+    description_client TEXT,
+    rapport_avant TEXT,
+    rapport_apres TEXT,
+    rapport_details TEXT,
+    FOREIGN KEY (client_id) REFERENCES users (id),
+    FOREIGN KEY (company_id) REFERENCES companies (id),
+    FOREIGN KEY (service_type_id) REFERENCES service_types (id)
+);
+
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    booking_id INT NOT NULL,
+    client_id INT NOT NULL,
+    rating INT CHECK (rating BETWEEN 1 AND 5),
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (booking_id) REFERENCES bookings (id),
+    FOREIGN KEY (client_id) REFERENCES users (id)
+);
