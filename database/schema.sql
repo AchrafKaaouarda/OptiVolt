@@ -1,6 +1,7 @@
-CREATE DATABASE IF NOT EXISTS optivolt DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE optivolt;
--- TABLES --
+DROP DATABASE IF EXISTS optivolt_db;
+CREATE DATABASE IF NOT EXISTS optivolt_db DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE optivolt_db;
+-- Utilisateurs (Client, Entreprise, Admin)
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     role ENUM(
@@ -18,7 +19,8 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE subscription_plan (
+-- Plans d'abonnement
+CREATE TABLE subscription_plans (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(50) NOT NULL,
     prix_mensuel FLOAT NOT NULL,
@@ -30,6 +32,7 @@ CREATE TABLE subscription_plan (
     description TEXT
 );
 
+-- Entreprises
 CREATE TABLE companies (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -49,6 +52,7 @@ CREATE TABLE companies (
     FOREIGN KEY (subscription_plan_id) REFERENCES subscription_plans (id)
 );
 
+-- Types de Services (Catégories)
 CREATE TABLE service_types (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom_service VARCHAR(100) NOT NULL,
@@ -62,6 +66,7 @@ CREATE TABLE service_types (
     ) DEFAULT 'Autre'
 );
 
+-- Catalogue (Offres des entreprises)
 CREATE TABLE catalog (
     id INT AUTO_INCREMENT PRIMARY KEY,
     company_id INT NOT NULL,
@@ -76,6 +81,7 @@ CREATE TABLE catalog (
     FOREIGN KEY (service_type_id) REFERENCES service_types (id)
 );
 
+-- Réservations
 CREATE TABLE bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
@@ -108,6 +114,7 @@ CREATE TABLE bookings (
     FOREIGN KEY (service_type_id) REFERENCES service_types (id)
 );
 
+-- Avis / Reviews
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
     booking_id INT NOT NULL,
@@ -119,6 +126,7 @@ CREATE TABLE reviews (
     FOREIGN KEY (client_id) REFERENCES users (id)
 );
 
+-- =============================================
 -- Données initiales
 -- =============================================
 
