@@ -2,7 +2,7 @@
 .venv/
 venv/
 env/
-
+.env
 # Fichiers compilés Python (cache)
 __pycache__/
 *.pyc
