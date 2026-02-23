@@ -1,0 +1,10 @@
+# Environnement virtuel (dépendances locales)
+.venv/
+venv/
+env/
+
+# Fichiers compilés Python (cache)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
