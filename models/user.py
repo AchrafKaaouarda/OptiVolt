@@ -69,8 +69,8 @@ class UserFactory:
     et l'usine nous construit le bon objet.
     """
     
-    @staticmethod
-    def create_user(role, nom, email, password, telephone=None, ville=None, adresse=None, is_banned=False, **kwargs):
+    @classmethod
+    def create_user(cls,role, nom, email, password, telephone=None, ville=None, adresse=None, is_banned=False, **kwargs):
         """
         @staticmethod signifie qu'on peut appeler cette fonction directement sur la classe
         sans avoir besoin de l'instancier (ex: UserFactory.create_user(...)).
@@ -91,3 +91,4 @@ class UserFactory:
         else:
             # Si le rôle n'existe pas, on lève une exception (erreur)
             raise ValueError(f"Erreur : Le rôle spécifié ({role}) est inconnu.")
+
