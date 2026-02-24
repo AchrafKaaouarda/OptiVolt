@@ -10,4 +10,12 @@ __pycache__/
 *.pyd
 
 
+# Local configuration file
+Config/settings.py
+
+# macOS
 .DS_Store
+# Windows
+Thumbs.db
+# Logs
+*.log
