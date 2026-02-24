@@ -71,10 +71,7 @@ class UserFactory:
     
     @classmethod
     def create_user(cls,role, nom, email, password, telephone=None, ville=None, adresse=None, is_banned=False, **kwargs):
-        """
-        @staticmethod signifie qu'on peut appeler cette fonction directement sur la classe
-        sans avoir besoin de l'instancier (ex: UserFactory.create_user(...)).
-        """
+    
         # On met le rôle en majuscule pour éviter les erreurs de casse (ex: "client" -> "CLIENT")
         role_en_majuscule = role.upper()
         
