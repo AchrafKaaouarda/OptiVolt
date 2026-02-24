@@ -1,0 +1,50 @@
+from abc import ABC, abstractmethod
+
+# --- Classes de base ---
+class User(ABC):
+    def __init__(self, id, nom, email, password, telephone, ville, adresse):
+        self.id = id
+        self.nom = nom
+        self.email = email
+        self.password = password
+        self.telephone = telephone
+        self.ville = ville
+        self.adresse = adresse
+        self.is_banned = False
+        self.role = None 
+
+    def __str__(self):
+        return f"[{self.role}] Nom: {self.nom} | Email: {self.email} | Ville: {self.ville}"
+
+class Client(User):
+    def __init__(self, id, nom, email, password, telephone, ville, adresse):
+        super().__init__(id, nom, email, password, telephone, ville, adresse)
+        self.role = "CLIENT"
+
+class Admin(User):
+    def __init__(self, id, nom, email, password, telephone, ville, adresse):
+        super().__init__(id, nom, email, password, telephone, ville, adresse)
+        self.role = "ADMIN"
+
+class Enterprise(User):
+    def __init__(self, id, nom, email, password, telephone, ville, adresse):
+        super().__init__(id, nom, email, password, telephone, ville, adresse)
+        self.role = "ENTREPRISE"
+
+
+class UserFactory:
+    @staticmethod
+    def create_user(role, user_id, nom, email, password, telephone, ville, adresse):
+        role = role.upper() 
+
+        if role == "CLIENT":
+            return Client(user_id, nom, email, password, telephone, ville, adresse)
+        
+        elif role == "ADMIN":
+            return Admin(user_id, nom, email, password, telephone, ville, adresse)
+        
+        elif role == "ENTREPRISE":
+            return Enterprise(user_id, nom, email, password, telephone, ville, adresse)
+        
+        else:
+            raise ValueError(f"Le rôle '{role}' n'est pas reconnu par la Factory.")
