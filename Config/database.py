@@ -46,11 +46,11 @@ class DatabaseConnection:
                 
                 # Si ça marche, on affiche un message de succès
                 if self.connection.is_connected():
-                    print("✅ Connexion à la base de données réussie (Singleton).")
+                    print("Connexion à la base de données réussie.")
                     
             except Error as error_message:
                 # Si une erreur survient, on l'attrape (try/except) et on l'affiche
-                print(f"❌ Erreur lors de la connexion à MySQL : {error_message}")
+                print(f"Erreur lors de la connexion à MySQL : {error_message}")
                 self.connection = None
 
     def get_connection(self):
@@ -69,4 +69,3 @@ class DatabaseConnection:
             # ... on la ferme
             self.connection.close()
             print("Connexion MySQL fermée.")
-

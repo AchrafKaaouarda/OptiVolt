@@ -39,7 +39,7 @@ def init_db(host, user, password, database):
     # 3. On va chercher le fichier SQL qui contient toutes nos tables
     # os.path.join et os.path.dirname(__file__) permettent de trouver le fichier 
     # sans erreur, peu importe d'où on lance le script Python.
-    schema_path = os.path.join(os.path.dirname(__file__), '../sql/schema.sql')
+    schema_path = os.path.join(os.path.dirname(__file__), '../database/Schema.sql')
     
     with open(schema_path, 'r') as f:
         schema = f.read()
