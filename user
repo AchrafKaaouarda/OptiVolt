@@ -14,3 +14,4 @@ class User(ABC):
 
     def __str__(self):
         return f"[{self.role}] {self.nom} - {self.email} ({self.ville})"
+        
