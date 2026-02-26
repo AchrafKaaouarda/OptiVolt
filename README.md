@@ -234,10 +234,10 @@ DB_NAME=optivolt
 
 ```bash
 # Création des tables
-python3 -m optivolt.utils.db_init
+python3 -m utils.db_init
 
 # Injection des données de test
-python3 -m optivolt.utils.seed_data
+python3 -m utils.seed_data
 ```
 
 ### 4️⃣ Lancement 🎉

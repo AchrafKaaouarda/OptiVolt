@@ -48,7 +48,7 @@ class CatalogService:
         base = item.prix_base + (item.prix_par_unite * quantite)
         
         # On utilise le design pattern Strategy pour appliquer la TVA ou des taxes locales
-        from optivolt.services.pricing_strategy import PricingFactory
+        from services.pricing_strategy import PricingFactory
         # Si la ville n'est pas précisée, on envoie une chaîne vide ("")
         ville_choisie = user_ville if user_ville is not None else ""
         
