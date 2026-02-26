@@ -1,22 +1,17 @@
-from Config.database import DatabaseConnection
-from Config.settings import Config
+#!/usr/bin/env python3
+import sys
+import os
 
-def main():
-    # On crée une instance de notre classe de connexion à la base de données
-    db = DatabaseConnection()
-    
-    # On établit la connexion en utilisant les paramètres de configuration
-    db.connect(
-        host=Config.DB_HOST,
-        user=Config.DB_USER,
-        password=Config.DB_PASSWORD,
-        database=Config.DB_NAME
-    )
-    
-    # Ici, on pourrait ajouter du code pour interagir avec la base de données via les DAOs...
-    
-    # Enfin, on ferme la connexion proprement à la fin du programme
-    db.close()
-    
+# Ensure the 'optivolt' package is importable
+# Add the current directory (project root) to sys.path
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
 if __name__ == "__main__":
-    main()
+    try:
+        from optivolt.main import main
+        main()
+    except ImportError as e:
+        print(f"Erreur d'import : {e}")
+        print("Assurez-vous d'avoir installé les dépendances : pip install -r requirements.txt")
